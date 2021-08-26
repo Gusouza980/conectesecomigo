@@ -3,6 +3,11 @@
 @section('styles')
     <!-- Sweet Alert-->
     <link href="{{asset('admin/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="{{asset('admin/libs/emojipicker/css/emoji.css')}}" rel="stylesheet">
+    <link href="{{asset('admin/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('admin/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('titulo')
@@ -24,22 +29,22 @@
 
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link @if(!session()->get('getree')) active @endif" data-bs-toggle="tab" href="#cadastro" role="tab">
+                        <a class="nav-link @if(!session()->get('elementos')) active @endif" data-bs-toggle="tab" href="#cadastro" role="tab">
                             <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
                             <span class="d-none d-sm-block">Dados de Cadastro</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if(session()->get('getree')) active @endif" data-bs-toggle="tab" href="#gefitapp" role="tab">
+                        <a class="nav-link @if(session()->get('elementos')) active @endif" data-bs-toggle="tab" href="#gefitapp" role="tab">
                             <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
-                            <span class="d-none d-sm-block">Meus Links</span>
+                            <span class="d-none d-sm-block">Elementos</span>
                         </a>
                     </li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content p-3 text-muted">
-                    <div class="tab-pane @if(!session()->get('getree')) active @endif" id="cadastro" role="tabpanel">
+                    <div class="tab-pane @if(!session()->get('elementos')) active @endif" id="cadastro" role="tabpanel">
                         <form id="form-edicao" action="{{route('painel.cliente.salvar', ['cliente' => $cliente])}}" method="POST" enctype="multipart/form-data">
                     
                             @csrf
@@ -350,7 +355,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="col-lg-6 col-12">
+                                {{-- <div class="col-lg-6 col-12">
                                     <div class="mb-3">
                                         <label for="login_google" class="form-label">Email Google</label>
                                         <input type="text" class="form-control" name="login_google" id="login_google" value="{{$cliente->login_google}}">
@@ -361,7 +366,7 @@
                                         <label for="senha_google" class="form-label">Senha do email</label>
                                         <input type="text" class="form-control" name="senha_google" id="senha_google" value="{{$cliente->senha_google}}">
                                     </div>
-                                </div>
+                                </div> --}}
                                 
                                 {{--  FACEBOOK  --}}
                                 <div class="col-lg-5 col-12">
@@ -370,7 +375,7 @@
                                         <input type="text" class="form-control" name="facebook" id="facebook" value="{{$cliente->facebook}}">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-5">
+                                {{-- <div class="col-lg-3 col-5">
                                     <div class="mb-3">
                                         <label for="login_facebook" class="form-label">Login do facebook</label>
                                         <input type="text" class="form-control" name="login_facebook" id="login_facebook" value="{{$cliente->login_facebook}}">
@@ -381,8 +386,8 @@
                                         <label for="senha_facebook" class="form-label">Senha do facebook</label>
                                         <input type="text" class="form-control" name="senha_facebook" id="senha_facebook" value="{{$cliente->senha_facebook}}">
                                     </div>
-                                </div>
-                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-center">
+                                </div> --}}
+                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-start">
                                     <div class="form-check form-switch form-switch-md mt-2" dir="ltr">
                                         <input class="form-check-input getree-check" type="checkbox" name="facebook_ativo" @if($cliente->facebook_ativo) checked @endif >
                                     </div>
@@ -395,7 +400,7 @@
                                         <input type="text" class="form-control" name="linkedin" id="linkedin" value="{{$cliente->linkedin}}">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-5">
+                                {{-- <div class="col-lg-3 col-5">
                                     <div class="mb-3">
                                         <label for="login_linkedin" class="form-label">Login do linkedin</label>
                                         <input type="text" class="form-control" name="login_linkedin" id="login_linkedin" value="{{$cliente->login_linkedin}}">
@@ -406,8 +411,8 @@
                                         <label for="senha_linkedin" class="form-label">Senha do linkedin</label>
                                         <input type="text" class="form-control" name="senha_linkedin" id="senha_linkedin" value="{{$cliente->senha_linkedin}}">
                                     </div>
-                                </div>
-                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-center">
+                                </div> --}}
+                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-start">
                                     <div class="form-check form-switch form-switch-md mt-2" dir="ltr">
                                         <input class="form-check-input getree-check" type="checkbox" name="linkedin_ativo" @if($cliente->linkedin_ativo) checked @endif>
                                     </div>
@@ -420,7 +425,7 @@
                                         <input type="text" class="form-control" name="instagram" id="instagram" value="{{$cliente->instagram}}">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-5">
+                                {{-- <div class="col-lg-3 col-5">
                                     <div class="mb-3">
                                         <label for="login_instagram" class="form-label">Login do instagram</label>
                                         <input type="text" class="form-control" name="login_instagram" id="login_instagram" value="{{$cliente->login_instagram}}">
@@ -431,8 +436,8 @@
                                         <label for="senha_instagram" class="form-label">Senha do instagram</label>
                                         <input type="text" class="form-control" name="senha_instagram" id="senha_instagram" value="{{$cliente->senha_instagram}}">
                                     </div>
-                                </div>
-                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-center">
+                                </div> --}}
+                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-start">
                                     <div class="form-check form-switch form-switch-md mt-2" dir="ltr">
                                         <input class="form-check-input getree-check" type="checkbox" name="instagram_ativo" @if($cliente->instagram_ativo) checked @endif>
                                     </div>
@@ -445,7 +450,7 @@
                                         <input type="text" class="form-control" name="pinterest" id="pinterest" value="{{$cliente->pinterest}}">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-5">
+                                {{-- <div class="col-lg-3 col-5">
                                     <div class="mb-3">
                                         <label for="login_pinterest" class="form-label">Login do pinterest</label>
                                         <input type="text" class="form-control" name="login_pinterest" id="login_pinterest" value="{{$cliente->login_pinterest}}">
@@ -456,8 +461,8 @@
                                         <label for="senha_pinterest" class="form-label">Senha do pinterest</label>
                                         <input type="text" class="form-control" name="senha_pinterest" id="senha_pinterest" value="{{$cliente->senha_pinterest}}">
                                     </div>
-                                </div>
-                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-center">
+                                </div> --}}
+                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-start">
                                     <div class="form-check form-switch form-switch-md mt-2" dir="ltr">
                                         <input class="form-check-input getree-check" type="checkbox" name="pinterest_ativo" @if($cliente->pinterest_ativo) checked @endif>
                                     </div>
@@ -470,7 +475,7 @@
                                         <input type="text" class="form-control" name="twitter" id="twitter" value="{{$cliente->twitter}}">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-5">
+                                {{-- <div class="col-lg-3 col-5">
                                     <div class="mb-3">
                                         <label for="login_twitter" class="form-label">Login do twitter</label>
                                         <input type="text" class="form-control" name="login_twitter" id="login_twitter" value="{{$cliente->login_twitter}}">
@@ -481,8 +486,8 @@
                                         <label for="senha_twitter" class="form-label">Senha do twitter</label>
                                         <input type="text" class="form-control" name="senha_twitter" id="senha_twitter" value="{{$cliente->senha_twitter}}">
                                     </div>
-                                </div>
-                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-center">
+                                </div> --}}
+                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-start">
                                     <div class="form-check form-switch form-switch-md mt-2" dir="ltr">
                                         <input class="form-check-input getree-check" type="checkbox" name="twitter_ativo" @if($cliente->twitter_ativo) checked @endif>
                                     </div>
@@ -495,7 +500,7 @@
                                         <input type="text" class="form-control" name="youtube" id="youtube" value="{{$cliente->youtube}}">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-5">
+                                {{-- <div class="col-lg-3 col-5">
                                     <div class="mb-3">
                                         <label for="login_youtube" class="form-label">Login do youtube</label>
                                         <input type="text" class="form-control" name="login_youtube" id="login_youtube" value="{{$cliente->login_youtube}}">
@@ -506,8 +511,8 @@
                                         <label for="senha_youtube" class="form-label">Senha do youtube</label>
                                         <input type="text" class="form-control" name="senha_youtube" id="senha_youtube" value="{{$cliente->senha_youtube}}">
                                     </div>
-                                </div>
-                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-center">
+                                </div> --}}
+                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-start">
                                     <div class="form-check form-switch form-switch-md mt-2" dir="ltr">
                                         <input class="form-check-input getree-check" type="checkbox" name="youtube_ativo" @if($cliente->youtube_ativo) checked @endif>
                                     </div>
@@ -520,7 +525,7 @@
                                         <input type="text" class="form-control" name="google_negocio" id="google_negocio" value="{{$cliente->google_negocio}}">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-5">
+                                {{-- <div class="col-lg-3 col-5">
                                     <div class="mb-3">
                                         <label for="login_google_negocio" class="form-label">Login do Google Meu Negócio</label>
                                         <input type="text" class="form-control" name="login_google_negocio" id="login_google_negocio" value="{{$cliente->login_google_negocio}}">
@@ -531,8 +536,8 @@
                                         <label for="senha_google_negocio" class="form-label">Senha do Google Meu Negócio</label>
                                         <input type="text" class="form-control" name="senha_google_negocio" id="senha_google_negocio" value="{{$cliente->senha_google_negocio}}">
                                     </div>
-                                </div>
-                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-center">
+                                </div> --}}
+                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-start">
                                     <div class="form-check form-switch form-switch-md mt-2" dir="ltr">
                                         <input class="form-check-input getree-check" type="checkbox" name="google_negocio_ativo" @if($cliente->google_negocio_ativo) checked @endif>
                                     </div>
@@ -545,7 +550,7 @@
                                         <input type="text" class="form-control" name="tiktok" id="tiktok" value="{{$cliente->tiktok}}">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-5">
+                                {{-- <div class="col-lg-3 col-5">
                                     <div class="mb-3">
                                         <label for="login_tiktok" class="form-label">Login do Tiktok</label>
                                         <input type="text" class="form-control" name="login_tiktok" id="login_tiktok" value="{{$cliente->login_tiktok}}">
@@ -556,8 +561,8 @@
                                         <label for="senha_tiktok" class="form-label">Senha do Tiktok</label>
                                         <input type="text" class="form-control" name="senha_tiktok" id="senha_tiktok" value="{{$cliente->senha_tiktok}}">
                                     </div>
-                                </div>
-                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-center">
+                                </div> --}}
+                                <div class="col-lg-1 col-2 d-flex align-items-center justify-content-start">
                                     <div class="form-check form-switch form-switch-md mt-2" dir="ltr">
                                         <input class="form-check-input getree-check" type="checkbox" name="tiktok_ativo" @if($cliente->tiktok_ativo) checked @endif> 
                                     </div>
@@ -606,7 +611,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane @if(session()->get('meuslinks')) active @endif" id="gefitapp" role="tabpanel">
+                    <div class="tab-pane @if(session()->get('elementos')) active @endif" id="gefitapp" role="tabpanel">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12 col-lg-6">
@@ -616,9 +621,9 @@
                                             <label for="formFile" class="form-label">Imagem</label>
                                             <input class="form-control" name="imagem" type="file">
                                         </div>   
-                                        <div class="mt-3">
+                                        <div class="mt-3 emoji-picker-container">
                                             <label for="titulo">Título</label>
-                                            <input type="text" class="form-control" name="titulo" id="titulo-getree" maxlength="250">
+                                            <input type="text" data-emojiable="true" class="form-control" name="titulo" id="titulo-getree" maxlength="250">
                                         </div> 
                                         <div class="mt-3">
                                             <label for="link">Link</label>
@@ -720,7 +725,13 @@
 @section('scripts')
     <!-- Sweet Alerts js -->
     <script src="{{asset('admin/libs/sweetalert2/sweetalert2.min.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src="{{asset('admin/libs/emojipicker/js/config.js')}}"></script>
+    <script src="{{asset('admin/libs/emojipicker/js/util.js')}}"></script>
+    <script src="{{asset('admin/libs/emojipicker/js/jquery.emojiarea.js')}}"></script>
+    <script src="{{asset('admin/libs/emojipicker/js/emoji-picker.js')}}"></script>
+    <script src="{{asset('admin/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('admin/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    {{-- <script src="{{asset('admin/libs/emojipicker/js/emoji.js')}}"></script> --}}
     <script>
         var inp = document.getElementById('logo-upload');
         inp.addEventListener('change', function(e){
@@ -753,6 +764,15 @@
         },false);
 
         $(document).ready(function(){
+            window.emojiPicker = new EmojiPicker({
+                emojiable_selector: '[data-emojiable=true]',
+                assetsPath: '{!! asset("admin/libs/emojipicker/img/") !!}',
+                popupButtonClasses: 'fa fa-smile-o'
+            });
+              // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+              // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+              // It can be called as many times as necessary; previously converted input fields will not be converted again
+            window.emojiPicker.discover();
             $("#sa-warning").click(function () {
                 Swal.fire({
                     title: "Tem Certeza?",
@@ -793,6 +813,140 @@
                     }
                 });
             });
+
+            $('#datatable2').DataTable( {
+                language:{
+                    "emptyTable": "Nenhum registro encontrado",
+                    "info": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "infoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "infoFiltered": "(Filtrados de _MAX_ registros)",
+                    "infoThousands": ".",
+                    "loadingRecords": "Carregando...",
+                    "processing": "Processando...",
+                    "zeroRecords": "Nenhum registro encontrado",
+                    "search": "Pesquisar",
+                    "paginate": {
+                        "next": "Próximo",
+                        "previous": "Anterior",
+                        "first": "Primeiro",
+                        "last": "Último"
+                    },
+                    "aria": {
+                        "sortAscending": ": Ordenar colunas de forma ascendente",
+                        "sortDescending": ": Ordenar colunas de forma descendente"
+                    },
+                    "select": {
+                        "rows": {
+                            "_": "Selecionado %d linhas",
+                            "0": "Nenhuma linha selecionada",
+                            "1": "Selecionado 1 linha"
+                        },
+                        "1": "%d linha selecionada",
+                        "_": "%d linhas selecionadas",
+                        "cells": {
+                            "1": "1 célula selecionada",
+                            "_": "%d células selecionadas"
+                        },
+                        "columns": {
+                            "1": "1 coluna selecionada",
+                            "_": "%d colunas selecionadas"
+                        }
+                    },
+                    "buttons": {
+                        "copySuccess": {
+                            "1": "Uma linha copiada com sucesso",
+                            "_": "%d linhas copiadas com sucesso"
+                        },
+                        "collection": "Coleção  <span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"><\/span>",
+                        "colvis": "Visibilidade da Coluna",
+                        "colvisRestore": "Restaurar Visibilidade",
+                        "copy": "Copiar",
+                        "copyKeys": "Pressione ctrl ou u2318 + C para copiar os dados da tabela para a área de transferência do sistema. Para cancelar, clique nesta mensagem ou pressione Esc..",
+                        "copyTitle": "Copiar para a Área de Transferência",
+                        "csv": "CSV",
+                        "excel": "Excel",
+                        "pageLength": {
+                            "-1": "Mostrar todos os registros",
+                            "1": "Mostrar 1 registro",
+                            "_": "Mostrar %d registros"
+                        },
+                        "pdf": "PDF",
+                        "print": "Imprimir"
+                    },
+                    "autoFill": {
+                        "cancel": "Cancelar",
+                        "fill": "Preencher todas as células com",
+                        "fillHorizontal": "Preencher células horizontalmente",
+                        "fillVertical": "Preencher células verticalmente"
+                    },
+                    "lengthMenu": "Exibir _MENU_ resultados por página",
+                    "searchBuilder": {
+                        "add": "Adicionar Condição",
+                        "button": {
+                            "0": "Construtor de Pesquisa",
+                            "_": "Construtor de Pesquisa (%d)"
+                        },
+                        "clearAll": "Limpar Tudo",
+                        "condition": "Condição",
+                        "conditions": {
+                            "date": {
+                                "after": "Depois",
+                                "before": "Antes",
+                                "between": "Entre",
+                                "empty": "Vazio",
+                                "equals": "Igual",
+                                "not": "Não",
+                                "notBetween": "Não Entre",
+                                "notEmpty": "Não Vazio"
+                            },
+                            "number": {
+                                "between": "Entre",
+                                "empty": "Vazio",
+                                "equals": "Igual",
+                                "gt": "Maior Que",
+                                "gte": "Maior ou Igual a",
+                                "lt": "Menor Que",
+                                "lte": "Menor ou Igual a",
+                                "not": "Não",
+                                "notBetween": "Não Entre",
+                                "notEmpty": "Não Vazio"
+                            },
+                            "string": {
+                                "contains": "Contém",
+                                "empty": "Vazio",
+                                "endsWith": "Termina Com",
+                                "equals": "Igual",
+                                "not": "Não",
+                                "notEmpty": "Não Vazio",
+                                "startsWith": "Começa Com"
+                            }
+                        },
+                        "data": "Data",
+                        "deleteTitle": "Excluir regra de filtragem",
+                        "logicAnd": "E",
+                        "logicOr": "Ou",
+                        "title": {
+                            "0": "Construtor de Pesquisa",
+                            "_": "Construtor de Pesquisa (%d)"
+                        },
+                        "value": "Valor"
+                    },
+                    "searchPanes": {
+                        "clearMessage": "Limpar Tudo",
+                        "collapse": {
+                            "0": "Painéis de Pesquisa",
+                            "_": "Painéis de Pesquisa (%d)"
+                        },
+                        "count": "{total}",
+                        "countFiltered": "{shown} ({total})",
+                        "emptyPanes": "Nenhum Painel de Pesquisa",
+                        "loadMessage": "Carregando Painéis de Pesquisa...",
+                        "title": "Filtros Ativos"
+                    },
+                    "searchPlaceholder": "Digite um termo para pesquisar",
+                    "thousands": "."
+                } 
+            } );
         })
     </script>
 @endsection

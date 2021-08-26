@@ -10,7 +10,7 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
 <head>
         
         <meta charset="utf-8" />
-        <title>Pingo - Painel Administrativo</title>
+        <title>Conecte-se Comigo - Painel Administrativo</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="_token" content="{{ csrf_token() }}">
 
@@ -41,20 +41,20 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
                             <a href="{{route('painel.index')}}" class="logo logo-dark">
-                                {{--  <span class="logo-sm">
-                                    <img src="{{asset('site/imagens/logo.png')}}" alt="" width="100">
-                                </span>  --}}
+                                 <span class="logo-sm">
+                                    <img src="{{asset('site/imagens/favicon.png')}}" alt="" style="max-width: 25px;">
+                                </span> 
                                 <span class="logo-lg">
-                                    <img class="" src="{{asset('admin/images/logo.png')}}" alt="" width="100">
+                                    <img class="" src="{{asset('admin/images/logo_sem_fundo.png')}}" alt="" width="150">
                                 </span>
                             </a>
 
                             <a href="{{route('painel.index')}}" class="logo logo-light">
-                                {{--  <span class="logo-sm">
-                                    <img src="{{asset('admin/images/logo-g.png')}}" alt="" style="max-width: 25px;">
-                                </span>  --}}
+                                 <span class="logo-sm">
+                                    <img src="{{asset('admin/images/favicon.png')}}" alt="" style="max-width: 25px;">
+                                </span> 
                                 <span class="logo-lg">
-                                    <img class="" src="{{asset('admin/images/logo.png')}}" alt="" width="100">
+                                    <img class="" src="{{asset('admin/images/logo_sem_fundo.png')}}" alt="" width="150">
                                 </span>
                             </a>
                         </div>
@@ -103,24 +103,50 @@ $usuario = \App\Models\Usuario::find(session()->get("usuario")["id"]);
                                     <li><a href="{{route('painel.usuarios')}}" key="t-default">Cadastros</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="javascript: void(0);" class="waves-effect">
-                                    <i class="fas fa-user-circle menu-icon"></i>
-                                    <span key="t-dashboards">Clientes</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="{{route('painel.clientes')}}" key="t-default">Cadastros</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript: void(0);" class="waves-effect">
-                                    <i class="mdi mdi-graph-outline"></i>
-                                    <span key="t-dashboards">Leads</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="{{route('painel.leads')}}" key="t-default">Cadastros</a></li>
-                                </ul>
-                            </li>
+                            @if(session()->get("usuario")["atividade"] == 0)
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="fas fa-user-circle menu-icon"></i>
+                                        <span key="t-dashboards">Clientes</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('painel.clientes')}}" key="t-default">Cadastros</a></li>
+                                    </ul>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="fas fa-user-circle menu-icon"></i>
+                                        <span key="t-dashboards">Gerenciamento</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('painel.cliente.editar', ['cliente' => session()->get('usuario')['cliente_id']])}}" key="t-default">Cadastro</a></li>
+                                        <li><a href="{{route('painel.cliente.relatorio', ['cliente' => session()->get('usuario')['cliente_id']])}}" key="t-default">Relatório</a></li>
+                                    </ul>
+                                </li>
+                            @endif
+                            @if(session()->get("usuario")["atividade"] == 0)
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="mdi mdi-graph-outline"></i>
+                                        <span key="t-dashboards">Leads</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('painel.leads')}}" key="t-default">Cadastros</a></li>
+                                    </ul>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="javascript: void(0);" class="waves-effect">
+                                        <i class="mdi mdi-graph-outline"></i>
+                                        <span key="t-dashboards">Leads</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{route('painel.cliente.leads', ['cliente' => session()->get('usuario')['cliente_id']])}}" key="t-default">Cadastros</a></li>
+                                    </ul>
+                                </li>
+                            @endif
+                            
                             
                         </ul>
                     </div>

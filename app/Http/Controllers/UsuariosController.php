@@ -11,7 +11,12 @@ class UsuariosController extends Controller
 {
     //
     public function consultar(){
-        $usuarios = Usuario::all();
+        if(session()->get("usuario")["atividade"] == 0){
+            $usuarios = Usuario::all();
+        }else{
+            $usuarios = Usuario::where("cliente_id", session()->get("usuario")["cliente_id"])->get();
+        }
+            
         return view("painel.usuarios.consultar", ["usuarios" => $usuarios]);
     }
 
@@ -26,6 +31,16 @@ class UsuariosController extends Controller
         ]);
 
         $usuario = new Usuario;
+
+        if($request->cliente_id){
+            if(session()->get("usuario") && session()->get("usuario")["cliente_id"]){
+                $usuario->cliente_id = session()->get("usuario")["cliente_id"];
+            }else{
+                $usuario->cliente_id = $request->cliente_id;
+                $usuario->atividade = 1;
+            }
+        }
+
         $usuario->nome = $request->nome;
         $usuario->email = $request->email;
         $usuario->usuario = $request->usuario;

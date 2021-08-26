@@ -294,6 +294,8 @@ class ClientesController extends Controller
         $elemento->posicao = $request->posicao;
         $elemento->save();
 
+        session()->flash("elementos");
+
         toastr()->success("Elemento adicionado ao links da(o) " . $cliente->nome);
         return redirect()->back()->with("meuslinks", "meuslinks");
     }

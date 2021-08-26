@@ -46,7 +46,7 @@
         .titulo{
             color: {{$cliente->cor_titulo}};
             font-size: 1.75rem; 
-            font-weight: 500; 
+            font-weight: 600; 
             line-height: 1.2;
         }
 
@@ -56,7 +56,6 @@
 
         .card-content{
             box-sizing: border-box;
-            border-radius: 30px;
             background-color: transparent;
             width: 550px;
             margin: 0 auto;
@@ -64,6 +63,7 @@
             color: {{$cliente->cor_letra_cartao}};
             transition: 0.5s;
             padding: 0 15px;
+            font-weight: 500;
         }
 
         .card-content:hover{
@@ -125,14 +125,14 @@
     <div class="container-fluid mt-5">
         <div class="row justify-content-center">
             <div class="col-12 col-xl-4">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <img src="{{asset($cliente->logo)}}" style="width: 150px; height: 150px; border-radius: 50%;" alt="Logo Cliente">
+                <div class="row justify-content-center">
+                    <div style="border-radius: 50%; width: 150px; height: 150px; background: url({{asset($cliente->logo)}}); background-position: center; background-size: contain;">
+                        {{-- <img src="{{asset($cliente->logo)}}" style="max-width: 100%;" alt="Logo Cliente"> --}}
                     </div>
                 </div>
                 <div class="row mt-4">
                     <div class="col-12 text-center">
-                        <h1 class="titulo">{{$cliente->titulo}}</h1>                    
+                        <b><h1 class="titulo">{{$cliente->titulo}}</h1></b>
                     </div>
                 </div>
                 <div class="row">

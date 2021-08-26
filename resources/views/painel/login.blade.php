@@ -5,12 +5,12 @@
 <head>
         
         <meta charset="utf-8" />
-        <title>Pingo - Painel Administrativo</title>
+        <title>Conecte-se Comigo - Painel Administrativo</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Painel de controle da Pingo" name="description" />
+        <meta content="Painel de controle da Conecte-se Comigo" name="description" />
         <meta content="Luis Gustavo de Souza Carvalho" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('admin/images/favicon.ico')}}">
+        <link rel="shortcut icon" href="{{asset('admin/images/favicon.png')}}">
 
         <!-- owl.carousel css -->
         <link rel="stylesheet" href="{{asset('admin/libs/owl.carousel/assets/owl.carousel.min.css')}}">
@@ -58,8 +58,8 @@
                                 <div class="d-flex flex-column h-100">
                                     <div class="mb-4 mb-md-5">
                                         <a href="index.html" class="md-block auth-logo">
-                                            <img src="{{asset('admin/images/logo.png')}}" alt="" width="200" class="mx-auto auth-logo-dark">
-                                            <img src="{{asset('admin/images/logo.png')}}" alt="" width="200" class="mx-auto auth-logo-light">
+                                            <img src="{{asset('admin/images/logo_sem_fundo.png')}}" alt="" width="300" class="mx-auto auth-logo-dark">
+                                            <img src="{{asset('admin/images/logo_sem_fundo.png')}}" alt="" width="300" class="mx-auto auth-logo-light">
                                         </a>
                                     </div>
                                     <div class="my-auto">
@@ -100,7 +100,7 @@
                                     </div>
 
                                     <div class="mt-4 mt-md-5 text-center text-white">
-                                        <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Pingo</p>
+                                        <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Devsheep</p>
                                     </div>
                                 </div>
                                 

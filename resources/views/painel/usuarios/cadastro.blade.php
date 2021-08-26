@@ -20,6 +20,9 @@
 
                 <form action="{{route('painel.usuario.cadastrar')}}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @if(session()->get("usuario")["atividade"] == 1)
+                        <input type="hidden" name="cliente_id" value="{{session()->get('usuario')['cliente_id']}}">
+                    @endif
                     <div class="row">
                         <div class="form-group col-12 col-lg-6">
                             <label for="nome">Nome *</label>
@@ -43,6 +46,17 @@
                             <input type="password" class="form-control" name="senha"
                                 id="senha" required>
                         </div>
+                        @if(session()->get("usuario")["atividade"] == 0)
+                            <div class="form-group col-12 col-lg-3">
+                                <label for="senha">Cliente</label>
+                                <select class="form-control" name="cliente_id" id="">
+                                    <option value="">Nenhum</option>
+                                    @foreach(\App\Models\Cliente::select(["id", "nome"])->get() as $cliente)
+                                        <option value="{{$cliente->id}}">{{$cliente->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endif
                     </div>       
                     <hr>
                     <div class="row">
