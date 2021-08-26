@@ -1,6 +1,8 @@
 /node_modules
 /public/hot
 /public/storage
+/public/admin/images/logos
+/public/admin/images/rede
 /storage/*.key
 /vendor
 .env
